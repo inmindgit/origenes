@@ -181,13 +181,43 @@ describe('FreedomOrigins Contract', () => {
         const system = {name:"SNP"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CND0001",
-                                snp_result:["00","10","01","00"],
+                                snp_result:["01","10","01","00"],
                                 str_result:[]}
         const dna_Sample_to_find = { system:system,
                                     analysis:dna_analysis }
         
         let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-        console.log(works[0])
+        
+        assert.isTrue(works[0]!=undefined)
+        
+    })
+    it('Look for non matching dna SNP sample', async () => {  
+    
+        const system = {name:"SNP"}
+        const dna_analysis = { doneDate:"21.07.2020",
+                                case_number:"CND0001",
+                                snp_result:["11","11","11","11"],
+                                str_result:[]}
+        const dna_Sample_to_find = { system:system,
+                                    analysis:dna_analysis }
+        
+       
+        assert.isRejected(instance.look_for_match(dna_Sample_to_find))
+        
+        })
+    it('Look for matching dna SNP sample border case 3 fails', async () => {  
+
+        const system = {name:"SNP"}
+        const dna_analysis = { doneDate:"21.07.2020",
+                                case_number:"CND0001",
+                                snp_result:["11","11","11","00"],
+                                str_result:[]}
+        const dna_Sample_to_find = { system:system,
+                                    analysis:dna_analysis }
+        
+
+        let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
+
         assert.isTrue(works[0]!=undefined)
         
         })
