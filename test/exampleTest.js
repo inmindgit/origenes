@@ -174,9 +174,6 @@ describe('FreedomOrigins Contract', () => {
     it('Show human map', async () => { 
         console.log((await instance.get_humansm()).decodedResult)
     })
-    it('Show dna samples map', async () => { 
-        console.log((await instance.get_dna_samples()))
-    })
 
     //look_for_match
     it('Look for matching dna SNP sample ["00","10","01","00"] for existing human 3 with ["11","10","01","00"] and 1 fail so match', async () => {  
@@ -190,8 +187,8 @@ describe('FreedomOrigins Contract', () => {
                                     analysis:dna_analysis }
         
         let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-        console.log(works)
-        assert.isOK(works)
+        console.log(works[0])
+        assert.isTrue(works[0]!=undefined)
         
         })
 
