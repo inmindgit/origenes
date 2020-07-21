@@ -129,7 +129,7 @@ describe('FreedomOrigins Contract', () => {
     /*
       add_dna_sample(sample_to_add:dNA_Sample,case_number:string) =
     */ 
-   it('Add sample for human 3', async () => {  
+   it('Add SNP sample for human 3', async () => {  
     
     const system = {name:"SNP"}
     const dna_analysis = { doneDate:"21.07.2020",
@@ -142,6 +142,20 @@ describe('FreedomOrigins Contract', () => {
     let works = ( await instance.add_dna_sample(dna_Sample_to_add,"CN0003")).decodedResult
 
     assert.isTrue(works==true, 'human has not been added')
+    })
+    it('Add STR sample for human 2', async () => {  
+    
+        const system = {name:"STR"}
+        const dna_analysis = { doneDate:"21.07.2020",
+                                case_number:"CN0002",
+                                snp_result:[],
+                                str_result:[{name:"DR123",value1:13,value2:16},{name:"DR124",value1:11,value2:12},{name:"DR124",value1:10,value2:9},{name:"DR125",value1:8,value2:16},{name:"DR126",value1:10,value2:9}]}
+        const dna_Sample_to_add = { system:system,
+                                    analysis:dna_analysis }
+         
+        let works = ( await instance.add_dna_sample(dna_Sample_to_add,"CN0002")).decodedResult
+    
+        assert.isTrue(works==true, 'human has not been added')
     })
     it('Add sample for inexisting human', async () => {  
         
@@ -191,6 +205,21 @@ describe('FreedomOrigins Contract', () => {
         assert.isTrue(works[0]!=undefined)
         
     })
+    it('Look for matching dna SNP sample ["00","01","10","11"] for existing human 3 with ["11","10","01","00"] and 1 fail so match', async () => {  
+        
+        const system = {name:"SNP"}
+        const dna_analysis = { doneDate:"21.07.2020",
+                                case_number:"CND0001",
+                                snp_result:["00","01","10","11"],
+                                str_result:[]}
+        const dna_Sample_to_find = { system:system,
+                                    analysis:dna_analysis }
+        
+        let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
+        
+        assert.isTrue(works[0]!=undefined)
+        
+    })
     it('Look for non matching dna SNP sample', async () => {  
     
         const system = {name:"SNP"}
@@ -219,7 +248,56 @@ describe('FreedomOrigins Contract', () => {
         let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
 
         assert.isTrue(works[0]!=undefined)
+        console.log(works[0])
         
-        })
+        }) 
+        it('Look for matching dna STR sample with no fails', async () => {  
+
+            const system = {name:"STR"}
+            const dna_analysis = { doneDate:"21.07.2020",
+                                    case_number:"CND0001",
+                                    snp_result:[],
+                                    str_result:[{name:"DR123",value1:13,value2:16},{name:"DR124",value1:11,value2:12},{name:"DR124",value1:10,value2:9},{name:"DR125",value1:8,value2:16},{name:"DR126",value1:10,value2:9}]}
+            const dna_Sample_to_find = { system:system,
+                                        analysis:dna_analysis }
+            
+    
+            let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
+    
+            assert.isTrue(works[0]!=undefined)
+            
+            })
+        it('Look for matching dna STR sample border case 2 fails', async () => {  
+
+            const system = {name:"STR"}
+            const dna_analysis = { doneDate:"21.07.2020",
+                                    case_number:"CND0001",
+                                    snp_result:[],
+                                    str_result:[{name:"DR123",value1:8,value2:8},{name:"DR124",value1:9,value2:9},{name:"DR124",value1:10,value2:9},{name:"DR125",value1:8,value2:16},{name:"DR126",value1:10,value2:9}]}
+            const dna_Sample_to_find = { system:system,
+                                        analysis:dna_analysis }
+            
+    
+            let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
+    
+            assert.isTrue(works[0]!=undefined)
+            
+            })
+        it('Look for no matching dna STR', async () => {  
+
+            const system = {name:"STR"}
+            const dna_analysis = { doneDate:"21.07.2020",
+                                    case_number:"CND0001",
+                                    snp_result:[],
+                                    str_result:[{name:"DR123",value1:8,value2:8},{name:"DR124",value1:9,value2:9},{name:"DR124",value1:8,value2:8},{name:"DR125",value1:7,value2:7},{name:"DR126",value1:7,value2:7}]}
+            const dna_Sample_to_find = { system:system,
+                                        analysis:dna_analysis }
+            
+    
+            
+    
+            assert.isRejected(instance.look_for_match(dna_Sample_to_find))
+            
+            })
 
 })
