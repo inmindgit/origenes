@@ -24,17 +24,18 @@ describe('FreedomOrigins Contract', () => {
     let instance;
     
     let ownerKeyPair = wallets[0];
-    
+    let AnotherKeyPair = wallets[1];
+    let deployedContract;
+
     before(async () => {
         deployer = new Deployer('local', ownerKeyPair.secretKey)
-      
+        deployedContract = deployer.deploy(EXAMPLE_CONTRACT_PATH,[]) // Deploy it
     })
 
     it('Deploying Example Contract', async () => {
-        const deployedPromise = deployer.deploy(EXAMPLE_CONTRACT_PATH) // Deploy it
-
-        await assert.isFulfilled(deployedPromise, 'Could not deploy the ExampleContract Smart Contract'); // Check whether it's deployed
-        instance = await Promise.resolve(deployedPromise)
+    
+        await assert.isFulfilled(deployedContract, 'Could not deploy the ExampleContract Smart Contract'); // Check whether it's deployed
+        instance = await Promise.resolve(deployedContract)
     })
 
     it('Check version 1', async () => {
@@ -50,14 +51,6 @@ describe('FreedomOrigins Contract', () => {
 
         assert.isTrue(works==true, 'user has not been created')
     })
-
-    it('Login existent user', async () => { //email_to_add:string, name_to_add:string, profile_id:int, address_to_add:address
-     
-        let user = ( await instance.user_registration())
-        console.log(user)
-     //   assert.isTrue(user.user_name=="omar@mail.com", 'user dont exist')
-    })
-
   
     //add_human(case_number:string, human_to_add:human, personal_data_to_add:personal_Data)
    

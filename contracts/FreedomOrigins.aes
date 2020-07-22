@@ -224,3 +224,6 @@ contract FreedomOrigins =
     state.humans
   entrypoint get_dna_samples():map(string,dNA_Sample) =
     state.dna_samples
+
+  entrypoint get_users():map(address,platformUser) = 
+    state.platform_users

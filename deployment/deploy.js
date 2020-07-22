@@ -15,7 +15,7 @@
  *  PERFORMANCE OF THIS SOFTWARE.
  */
 const Deployer = require('aeproject-lib').Deployer;
-
+ 
 const deploy = async (network, privateKey, compiler, networkId) => {
     let deployer = new Deployer(network, privateKey, compiler, networkId)
 
