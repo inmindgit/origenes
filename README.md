@@ -1,22 +1,26 @@
 # origenes quick start smart contract install
-Requirements
+##Requirements
 
 In order to have aeproject working you must have installed the following:
 
-   nodejs 9.5.0 (if you are willing to use the *fire-editor* aepp locally with *aeproject* you would need to use version not lower to 10.9.0. For more information    check [aeproject fire-editor](developer-documentation/aeproject-cli/fire-editor.md))
+   ```
+   nodejs 9.5.0 
    python 
    docker
+   ```
 
 Note: For older versions on widnows you can use docker-toolbox. This will install docker-compose as part of the toolkit. Please bear in mind that the your docker-compose version must be at least @1.20.0 
 
-Install
+Note2: If you are willing to use the *fire-editor* aepp locally with *aeproject* you would need to use version not lower to 10.9.0. For more information    check [aeproject fire-editor](developer-documentation/aeproject-cli/fire-editor.md))
+
+##Install
 
 
    npm install -g aeproject
 
 
 
-For running origins smart contract test
+##For running origins smart contract test
 
    1) aeproject env
    2) aeproject compiler
