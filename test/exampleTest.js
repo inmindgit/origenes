@@ -14,20 +14,20 @@
  *  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
  *  PERFORMANCE OF THIS SOFTWARE.
  */
-
+ 
 const Deployer = require('aeproject-lib').Deployer;
-const EXAMPLE_CONTRACT_PATH = "./contracts/FreedomOrigins.aes";
-
+const EXAMPLE_CONTRACT_PATH = "./contracts/FreedomOrigins.aes"; 
 describe('FreedomOrigins Contract', () => {
 
     let deployer;
+    
     let instance;
+    
     let ownerKeyPair = wallets[0];
-    let notOwnerKeyPair = wallets[1];
-   
-
+    
     before(async () => {
         deployer = new Deployer('local', ownerKeyPair.secretKey)
+      
     })
 
     it('Deploying Example Contract', async () => {
@@ -51,18 +51,16 @@ describe('FreedomOrigins Contract', () => {
         assert.isTrue(works==true, 'user has not been created')
     })
 
+    it('Login existent user', async () => { //email_to_add:string, name_to_add:string, profile_id:int, address_to_add:address
+     
+        let user = ( await instance.user_registration())
+        console.log(user)
+     //   assert.isTrue(user.user_name=="omar@mail.com", 'user dont exist')
+    })
+
+  
     //add_human(case_number:string, human_to_add:human, personal_data_to_add:personal_Data)
-    /*record personal_Data = {
-    //    case_number:string,
-    //    document_id:string,
-        registry_country:string,
-        identity_country:string,
-        name:string,
-        last_name:string,
-        address:string,
-        phone_number:string,
-        email:string,
-        contact:string}*/
+   
     it('Add Human 1', async () => {  
         
         const personal_data_human = {case_number:"CN0001",
@@ -125,10 +123,7 @@ describe('FreedomOrigins Contract', () => {
     })
     
     
-    //ingreso de muestras
-    /*
-      add_dna_sample(sample_to_add:dNA_Sample,case_number:string) =
-    */ 
+    
    it('Add SNP sample for human 3', async () => {  
     
     const system = {name:"SNP"}
@@ -299,5 +294,5 @@ describe('FreedomOrigins Contract', () => {
             assert.isRejected(instance.look_for_match(dna_Sample_to_find))
             
             })
-
+           
 })
