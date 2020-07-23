@@ -43,9 +43,11 @@ contract FreedomOrigins =
       value2:int}
   
   record system = {
+      id:int,
       name:string} //Snip o STR
 
   record profile = {
+      id:int,
       name:string}
 
   datatype event = //tbc
@@ -97,8 +99,8 @@ contract FreedomOrigins =
       require(Map.member(Call.caller,state.platform_users),"not allowed")
       require(state.platform_users[Call.caller].profile.name=="Viewer","not allowed")
   
-  stateful entrypoint init()={active_contract=true, profiles={[1] = {name="Admin"},[2] = {name="Operator"},[3] = {name="Lab"},[4] = {name="Viewer"}},
-    systems = {[1]={name="SNP"},[2]={name="STR"}},
+  stateful entrypoint init()={active_contract=true, profiles={[1] = {id=1,name="Admin"},[2] = {id=2,name="Operator"},[3] = {id=3,name="Lab"},[4] = {id=4,name="Viewer"}},
+    systems = {[1]={id=1,name="SNP"},[2]={id=2,name="STR"}},
     files={},
     humans={},
     lhumans=[],
@@ -227,3 +229,6 @@ contract FreedomOrigins =
 
   entrypoint get_users():map(address,platformUser) = 
     state.platform_users
+
+    //agregar un get user que solo el dueño de la muestra pueda recuperar junto con su address
+    //agregar qeu cuando se hace una busqeuda y hay un match se guarde en la lista de coincidencias? capaz con parameetro especial

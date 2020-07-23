@@ -119,7 +119,7 @@ describe('FreedomOrigins Contract', () => {
     
    it('Add SNP sample for human 3', async () => {  
     
-    const system = {name:"SNP"}
+    const system = {id:1,name:"SNP"}
     const dna_analysis = { doneDate:"21.07.2020",
                             case_number:"CN0003",
                             snp_result:["11","10","01","00"],
@@ -133,7 +133,7 @@ describe('FreedomOrigins Contract', () => {
     })
     it('Add STR sample for human 2', async () => {  
     
-        const system = {name:"STR"}
+        const system = {id:2,name:"STR"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CN0002",
                                 snp_result:[],
@@ -147,7 +147,7 @@ describe('FreedomOrigins Contract', () => {
     })
     it('Add sample for inexisting human', async () => {  
         
-        const system = {name:"SNP"}
+        const system = {id:1,name:"SNP"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CND0001",
                                 snp_result:["11","10","01","00"],
@@ -180,7 +180,7 @@ describe('FreedomOrigins Contract', () => {
     //look_for_match
     it('Look for matching dna SNP sample ["00","10","01","00"] for existing human 3 with ["11","10","01","00"] and 1 fail so match', async () => {  
         
-        const system = {name:"SNP"}
+        const system = {id:1,name:"SNP"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CND0001",
                                 snp_result:["01","10","01","00"],
@@ -195,7 +195,7 @@ describe('FreedomOrigins Contract', () => {
     })
     it('Look for matching dna SNP sample ["00","01","10","11"] for existing human 3 with ["11","10","01","00"] and 1 fail so match', async () => {  
         
-        const system = {name:"SNP"}
+        const system = {id:1,name:"SNP"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CND0001",
                                 snp_result:["00","01","10","11"],
@@ -210,7 +210,7 @@ describe('FreedomOrigins Contract', () => {
     })
     it('Look for non matching dna SNP sample', async () => {  
     
-        const system = {name:"SNP"}
+        const system = {id:1,name:"SNP"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CND0001",
                                 snp_result:["11","11","11","11"],
@@ -224,7 +224,7 @@ describe('FreedomOrigins Contract', () => {
         })
     it('Look for matching dna SNP sample border case 3 fails', async () => {  
 
-        const system = {name:"SNP"}
+        const system = {id:1,name:"SNP"}
         const dna_analysis = { doneDate:"21.07.2020",
                                 case_number:"CND0001",
                                 snp_result:["11","11","11","00"],
@@ -241,7 +241,7 @@ describe('FreedomOrigins Contract', () => {
         }) 
         it('Look for matching dna STR sample with no fails', async () => {  
 
-            const system = {name:"STR"}
+            const system = {id:2,name:"STR"}
             const dna_analysis = { doneDate:"21.07.2020",
                                     case_number:"CND0001",
                                     snp_result:[],
@@ -257,7 +257,7 @@ describe('FreedomOrigins Contract', () => {
             })
         it('Look for matching dna STR sample border case 2 fails', async () => {  
 
-            const system = {name:"STR"}
+            const system = {id:2,name:"STR"}
             const dna_analysis = { doneDate:"21.07.2020",
                                     case_number:"CND0001",
                                     snp_result:[],
@@ -273,7 +273,7 @@ describe('FreedomOrigins Contract', () => {
             })
         it('Look for no matching dna STR', async () => {  
 
-            const system = {name:"STR"}
+            const system = {id:2,name:"STR"}
             const dna_analysis = { doneDate:"21.07.2020",
                                     case_number:"CND0001",
                                     snp_result:[],

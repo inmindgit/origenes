@@ -22,7 +22,7 @@ const ORIGINS_CONTRACT = utils.readFileRelative('./contracts/FreedomOrigins.aes'
 
 const config = {
     url: 'http://localhost:3001/',
-    internalUrl: 'http://localhost:3001/',
+    internalUrl: 'http://localhost:3001/internal/',
     compilerUrl: 'http://localhost:3080'
 };
 
@@ -62,27 +62,27 @@ describe('Origins Contract', () => {
     });
 
     it('Add admin', async () => {
-        let works = await originsContract.methods.add_user("omar@mail.com","Omar",1,wallets[0].publicKey);
+        let works = await originsContract.methods.add_user("omar","Omar",1,wallets[0].publicKey);
         assert.equal(works.result.returnType, 'ok');
     });
     it('List authorized user', async () => {
         
-        let users = await originsContract.methods.get_users().catch(e => e);
+        let users = await originsContract.methods.get_users();
         console.log(users.decodedResult)
         
     });
     it('Login authorized user', async () => {
         
-        let user = await originsContract.methods.user_registration().catch(e => e);
+        let user = await originsContract.methods.user_registration();
        
         assert.equal(user.result.returnType,'ok', 'user dont exist') 
     });
     it('Login unauthorized user', async () => {
         
         originsContract = await nonClient.getContractInstance(ORIGINS_CONTRACT, {contractAddress: originsContract.deployInfo.address});
-        let user = await originsContract.methods.user_registration().catch(e => e);
        
-        assert.equal(user,undefined) 
+       
+        assert.isRejected(originsContract.methods.user_registration()) 
     });
   
 
