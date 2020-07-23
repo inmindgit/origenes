@@ -287,5 +287,44 @@ describe('FreedomOrigins Contract', () => {
             assert.isRejected(instance.look_for_match(dna_Sample_to_find))
             
             })
-           
+            it('Add Human 5', async () => {  
+        
+                const personal_data_human = {case_number:"CASE001",
+                                            document_id:"DI12366",
+                                            registry_country:"UY", 
+                                            identity_country:"UY", 
+                                            name:"Nombre",
+                                            last_name:"Apellido",
+                                            address:"DIreccion de la persona",
+                                            phone_number:"099892175",
+                                            email:"correo@correo.com",
+                                            contact:"datos de contacto extra"}
+                
+                const human_to_add = {case_number:"CN0002",personal_data:personal_data_human}
+             
+        
+                let works = ( await instance.add_human("CASE001",human_to_add,personal_data_human)).decodedResult
+        
+                assert.isTrue(works==true, 'human has not been added')
+            }) 
+            it('Add SNP sample for human 5', async () => {  
+    
+                const system = {id:1,name:"SNP"}
+                const dna_analysis = { doneDate:"2020-07-23T13:39:32.455Z",
+                                        case_number:"CASE001",
+                                        snp_result:[
+                                            '00', '00', '00',
+                                             '00', '00', '11',
+                                              '11', '11', '11',
+                                              '11'
+                                            ],
+                                        str_result:[]}
+                const dna_Sample_to_add = { system:system,
+                                            analysis:dna_analysis }
+                 
+                let works = ( await instance.add_dna_sample(dna_Sample_to_add,"CN0003")).decodedResult
+            
+                assert.isTrue(works==true, 'human has not been added')
+                })
+          
 })
