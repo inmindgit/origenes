@@ -190,6 +190,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
         
         let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
         let human3 =  ( await instance.get_human_by_case_number("CN0003")).decodedResult
+        console.log('lista'+works)
         assert.equal(works[0].case_number,human3.case_number,"error finding matching for human3")
         
     })
@@ -204,7 +205,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
                                     analysis:dna_analysis }
         
         let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-        
+        console.log('lista'+works)
         assert.isTrue(works[0]!=undefined)
         
     })
@@ -218,7 +219,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
         const dna_Sample_to_find = { system:system,
                                     analysis:dna_analysis }
         
-       
+    
         assert.isRejected(instance.look_for_match(dna_Sample_to_find))
         
         })
@@ -234,7 +235,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
         
 
         let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-
+        console.log('lista'+works)
         assert.isTrue(works[0]!=undefined)
        
         
@@ -251,7 +252,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
             
     
             let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-    
+            console.log('lista'+works)
             assert.isTrue(works[0]!=undefined)
             
             })
@@ -267,7 +268,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
             
     
             let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-    
+            console.log('lista'+works)
             assert.isTrue(works[0]!=undefined)
             
             })
@@ -282,9 +283,9 @@ describe('Logic test of FreedomOrigins Contract', () => {
                                         analysis:dna_analysis }
             
     
-            
-    
-            assert.equal(instance.look_for_match(dna_Sample_to_find),undefined,'error looking no match')
+            let result= (await instance.look_for_match(dna_Sample_to_find)).decodedResult
+            console.log('lista'+result)
+            assert.isTrue(result[0]==undefined,'error looking no match')
             
             })
             it('Add Human 5', async () => {  
@@ -393,10 +394,9 @@ describe('Logic test of FreedomOrigins Contract', () => {
                     const dna_Sample_to_find = { system:system,
                                                 analysis:dna_analysis }
                     
-                     let dna=(await instance.get_human_dna_by_case_number('CN0010')).decodedResult
-                    console.log(dna)
+                    let dna=(await instance.get_human_dna_by_case_number('CN0010')).decodedResult
                     let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-                    
+                    console.log("Lista coincidencias " + works)
                     assert.equal(works[0].case_number,'CN0010','error looking for match')
                     
                     })
@@ -419,7 +419,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
                     const dna_Sample_to_find = { system:system,
                                                 analysis:dna_analysis }
                     let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
-                    console.log(works)
-                    assert.isTrue(works==undefined, 'human has not been added')
+                    console.log('lista '+works)
+                    assert.isTrue(works[0]==undefined, 'error should no match')
                 })
 })

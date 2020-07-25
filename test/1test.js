@@ -72,7 +72,7 @@ describe('Security test of FreedomOrigins Contract', () => {
     it('List authorized user', async () => {
         
         let users = await originsContract.methods.get_users();
-        console.log(users)
+        assert.equal(users.result.returnType, 'ok');
         
     });
     it('Login authorized user', async () => {
