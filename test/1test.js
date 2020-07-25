@@ -26,7 +26,7 @@ const config = {
     compilerUrl: 'http://localhost:3080'
 };
 
-describe('Origins Contract', () => {
+describe('Security test of FreedomOrigins Contract', () => {
     let client, nonClient, originsContract;
   
     before(async () => {
@@ -68,7 +68,7 @@ describe('Origins Contract', () => {
     it('List authorized user', async () => {
         
         let users = await originsContract.methods.get_users();
-        console.log(users.decodedResult)
+        
         
     });
     it('Login authorized user', async () => {
