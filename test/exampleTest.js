@@ -284,7 +284,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
     
             
     
-            assert.equal(instance.look_for_match(dna_Sample_to_find).length,0,'error looking no match')
+            assert.equal(instance.look_for_match(dna_Sample_to_find),undefined,'error looking no match')
             
             })
             it('Add Human 5', async () => {  
@@ -420,6 +420,6 @@ describe('Logic test of FreedomOrigins Contract', () => {
                                                 analysis:dna_analysis }
                     let works = ( await instance.look_for_match(dna_Sample_to_find)).decodedResult
                     console.log(works)
-                    assert.isTrue(works.length==0, 'human has not been added')
+                    assert.isTrue(works==undefined, 'human has not been added')
                 })
 })

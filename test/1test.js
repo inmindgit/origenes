@@ -65,10 +65,14 @@ describe('Security test of FreedomOrigins Contract', () => {
         let works = await originsContract.methods.add_user("omar","Omar",1,wallets[0].publicKey);
         assert.equal(works.result.returnType, 'ok');
     });
+    it('Test init', async () => {
+        let works = await originsContract.methods.test_init();
+        assert.equal(works.result.returnType, 'ok');
+    });
     it('List authorized user', async () => {
         
         let users = await originsContract.methods.get_users();
-        
+        console.log(users)
         
     });
     it('Login authorized user', async () => {
