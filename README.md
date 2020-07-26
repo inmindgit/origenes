@@ -9,12 +9,12 @@ There is 4 user profiles Admin, Laboratory, Operator and Viewer.
 
 ## Smart Contract
 
-This platforms works with Smart Contracts based on aeternity.com blockchain . The associated contract repo can be find here: 
+This platforms works with Smart Contracts based on aeternity.com blockchain .
 
-https://github.com/inmindgit/origenes (this doesn't need to be installed for making this project work unless you want to run it fully local)
+(this doesn't need to be installed for making this project work unless you want to run it fully local)
 
 
-1) Go to https://github.com/inmindgit/origenes_node and follow steps
+1) First install the web platform by following https://github.com/inmindgit/origenes_node guide
 
 
 # Orígenes quick start smart contract install
