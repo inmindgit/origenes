@@ -46,7 +46,28 @@ describe('NoMatch Logic test of FreedomOrigins Contract', () => {
     })
     
     //human 8
+    it('Add Human 7', async () => {  
+        
+        const personal_data_human = {case_number:"CN0007",
+                                    document_id:"DI0007",
+                                    registry_country:"UY", 
+                                    identity_country:"UY", 
+                                    name:"Nombre",
+                                    last_name:"Apellido",
+                                    address:"DIreccion de la persona",
+                                    phone_number:"099892175",
+                                    email:"correo@correo.com",
+                                    contact:"datos de contacto extra"}
+        
+        const human_to_add = {case_number:"CN0007",personal_data:personal_data_human}
+     
 
+        let works = ( await instance.add_human("CN0007",human_to_add,personal_data_human)).decodedResult
+        let human07 =  ( await instance.get_human_by_case_number("CN0007")).decodedResult
+        
+        assert.isTrue(works==true, 'human has not been added')
+        assert.equal(human07.case_number,'CN0007','error human 7 not added')
+    })  
     it('Add Human 8', async () => {  
         
         const personal_data_human = {case_number:"CN0008",
@@ -67,7 +88,7 @@ describe('NoMatch Logic test of FreedomOrigins Contract', () => {
         let human08 =  ( await instance.get_human_by_case_number("CN0008")).decodedResult
         
         assert.isTrue(works==true, 'human has not been added')
-        assert.equal(human08.case_number,'CN0008','error human 9 not added')
+        assert.equal(human08.case_number,'CN0008','error human 8 not added')
     })  
     it('Add STR sample for human 08', async () => {  
 
@@ -237,14 +258,14 @@ describe('NoMatch Logic test of FreedomOrigins Contract', () => {
                                             case_number:"CND0010",
                                             snp_result:[],
                                             str_result:[
-                                            {name:"1",value1:1,value2:10},{name:"2",value1:10,value2:10},{name:"3",value1:1,value2:1},
+                                            {name:"1",value1:1,value2:1},{name:"2",value1:1,value2:1},{name:"3",value1:1,value2:1},
                                             {name:"4",value1:1,value2:1},{name:"5",value1:1,value2:1},
                                             {name:"6",value1:1,value2:1},{name:"7",value1:1,value2:1},{name:"8",value1:1,value2:1},
                                             {name:"9",value1:1,value2:1},{name:"10",value1:1,value2:1},
                                             {name:"11",value1:1,value2:1},{name:"12",value1:1,value2:1},{name:"13",value1:1,value2:1},
                                             {name:"14",value1:1,value2:1},{name:"15",value1:1,value2:1},
                                             {name:"16",value1:1,value2:1},{name:"17",value1:1,value2:1},{name:"18",value1:1,value2:1},
-                                            {name:"19",value1:10,value2:10},{name:"20",value1:10,value2:10}]}
+                                            {name:"19",value1:1,value2:1},{name:"20",value1:1,value2:10}]}
 
                     const dna_Sample_to_find = { system:system,
                                                 analysis:dna_analysis }
@@ -252,4 +273,6 @@ describe('NoMatch Logic test of FreedomOrigins Contract', () => {
                    
                     assert.equal(works[0].case_number,'CN0010','error looking for match')
                 })
+
+                 
 })
