@@ -1,4 +1,25 @@
-# origenes quick start smart contract install
+# Origenes 
+
+## Smartcontract, Node Server and webplatform
+
+This platform is composed by a smart contract (this repo) , web platform and node server (https://github.com/inmindgit/origenes_node) 
+
+This application provides access to add humans as well as ask for genetic samples to be further inserted and look for coincidences
+There is 4 user profiles Admin, Laboratory, Operator and Viewer.
+
+You can see it working by browsing : https://origenes-aepp.herokuapp.com/ and do the following instructions https://drive.google.com/file/d/1vXKq8ebYt-7niYfo1rw9M4lkqewL4uDq/view?usp=sharing
+
+## Smart Contract
+
+This platforms works with Smart Contracts based on aeternity.com blockchain .
+
+(this doesn't need to be installed for making this project work unless you want to run it fully local)
+
+
+1) First install the web platform by following https://github.com/inmindgit/origenes_node guide
+
+
+# Orígenes quick start smart contract install
 
 ## Requirements
 
