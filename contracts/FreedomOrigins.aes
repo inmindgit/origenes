@@ -142,14 +142,13 @@ contract FreedomOrigins =
     Chain.event(AddDNASample(case_number))
     true
 
-  stateful entrypoint ask_for_sample_dna_test(document_id:string) : string = 
+  entrypoint ask_for_sample_dna_test(document_id:string) : human = 
     isOperator()
     let human = get_human_by_id(document_id)
     switch (human)
       None=>abort("doesn't exist")
       Some(human)=>
-        Chain.event(AskForDNASample(human.case_number)) 
-        human.case_number
+        human
                 
 
 

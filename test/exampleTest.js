@@ -163,7 +163,7 @@ describe('Logic test of FreedomOrigins Contract', () => {
    it('Ask for DNA sample test for existing human with ID DI1234 and CN0001', async () => {  
         let works = ( await instance.ask_for_sample_dna_test("DI1234")).decodedResult
         
-        assert.isTrue(works=="CN0001", 'human has not been added')
+        assert.isTrue(works.case_number=="CN0001", 'human has not been added')
     })
 
     it('Ask for DNA sample test for inexisting human', async () => { 
