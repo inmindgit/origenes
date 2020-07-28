@@ -7,7 +7,7 @@ This platform is composed by a smart contract (this repo) , web platform and nod
 This application provides access to add humans as well as ask for genetic samples to be further inserted and look for coincidences
 There is 4 user profiles Admin, Laboratory, Operator and Viewer.
 
-You can see it working by browsing : https://origenes-aepp.herokuapp.com/ and do the following instructions https://drive.google.com/file/d/1vXKq8ebYt-7niYfo1rw9M4lkqewL4uDq/view?usp=sharing
+You can see it working by browsing : https://origenes-aepp.herokuapp.com/ and do the following instructions https://drive.google.com/file/d/10GPl8PJVafS80NIjOg7nlFw4K9i3lApe/view?usp=sharing
 
 ## Smart Contract
 
